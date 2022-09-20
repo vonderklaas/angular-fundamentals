@@ -1,0 +1,24 @@
+<div class="py-4 px-6 border rounded flex items-center flex-col mb-2">
+  <img class="w-1/6 mb-2" [src]="product.image" [alt]="product.title" />
+  <p>
+    Price - <span class="font-bold">{{ product.price | currency }}</span>
+  </p>
+
+  <button
+    (click)="details = !details"
+    class="border rounded py-2 my-4 px-4 bg-yellow-400"
+    [ngClass]="{ 'bg-yellow-400': !details, 'bg-blue-400': details }"
+  >
+    <span>{{ details ? "Hide" : "Expand" }} details </span>
+  </button>
+
+  <div *ngIf="details">
+    <p>{{ product.description }}</p>
+    <p>
+      Rating -
+      <span [ngStyle]="{ fontWeight: 'bold' }">{{
+        product.rating.rate | number
+      }}</span>
+    </p>
+  </div>
+</div>
